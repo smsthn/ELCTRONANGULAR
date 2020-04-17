@@ -1,14 +1,14 @@
 
 <div class="log-root" cdkDrag
    cdkDragRootElement=".cdk-overlay-pane" cdkDragBoundary='html'
-   cdkDragHandle>
+   >
   <div class="colorPicker">
     <div *ngFor="let color of colors; let i=index">
       <button [style.background-color]="color" (click)="changeLogColor(i)"></button>
     </div>
   </div>
     <mat-card [className]="logcolor">
-      <mat-card-title-group class="things-title">
+      <mat-card-title-group class="things-title" cdkDragHandle>
         <mat-slide-toggle class="timed-slider" [checked]="log.is_timed" (change)="changeTimed()">Is Timed</mat-slide-toggle>
         <mat-form-field *ngIf="allCategories" [ngClass]="logcolor">
           <mat-label>Category</mat-label>

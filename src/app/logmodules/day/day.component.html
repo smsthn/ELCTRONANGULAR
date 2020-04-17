@@ -1,16 +1,23 @@
 
-<div>
-  <cdk-virtual-scroll-viewport>
+
+
     <div class="logs-container"
-  cdkDropList
+    cdkDropList  cdkDropListOrientation="vertical"
      [cdkDropListData]="logs$ |async"
      (cdkDropListDropped)="drop($event)"
   >
+  <!--
+cdkDropListAutoScrollDisabled="false"   cdkDropListLockAxis="x"
+
+
+  -->
 
     <div *ngFor="let log of logs$ |async ;let i = index" [@inOutAnimation]
-
+      cdkDragLockAxis="x" cdkDragStartDelay="200"
+         cdkDrag
      >
-        <mat-card [className]="log.color" (click)="openDialog(log.id)" cdkDragLockAxis="x" cdkDrag>
+        <mat-card [className]="log.color"
+        (click)="openDialog(log.id)">
             <mat-card-header>
                 <mat-card-title >
                     <h1 class="log-title">{{log.title}}</h1>
@@ -36,8 +43,8 @@
     </div>
 
 </div>
-</cdk-virtual-scroll-viewport>
-</div>
+
+
 <div class="small-date">
 
   <mat-form-field>

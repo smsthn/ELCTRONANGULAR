@@ -6,7 +6,6 @@ import { ChartsComponent } from './charts.component';
 import { SumchartsComponent } from './sumcharts/sumcharts.component';
 import {SharedModule} from "../shared/shared.module"
 import { ChartsService } from './charts.service';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DetailedComponent } from './detailed/detailed.component';
 
 
@@ -16,7 +15,6 @@ import { DetailedComponent } from './detailed/detailed.component';
     CommonModule,
     ChartsRoutingModule,
     SharedModule,
-    ScrollingModule
   ],
   providers:[ChartsService]
 })

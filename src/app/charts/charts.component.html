@@ -11,14 +11,14 @@
   <mat-button-toggle value="custom">Custom Date</mat-button-toggle>
 </mat-button-toggle-group>
 <div class="custom-date" *ngIf="viewPeriod === 'custom' && currentView !== 'Detailed'">
-  <mat-form-field>
+  <mat-form-field class="from-date">
     <input matInput [matDatepicker]="fromPicker" (dateChange)="changeDate()" [max]="maxDate"
      [(ngModel)]="from" placeholder="From" required disabled>
     <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
     <button matSuffix [matDatepickerToggle]="fromPicker"></button>
     <mat-datepicker disabled="false" touchUi #fromPicker></mat-datepicker>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="till-date">
     <input matInput [matDatepicker]="tillPicker" (dateChange)="changeDate()" [max]="maxDate"
      placeholder="Till" [(ngModel)]="till" required disabled>
     <mat-datepicker-toggle matSuffix [for]="tillPicker"></mat-datepicker-toggle>

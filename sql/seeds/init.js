@@ -86,22 +86,39 @@ var createThings = /** @class */ (function () {
         var _this = this;
         var enumvals = Object.values(LogColor);
         var arr = new Array(10000).fill(null).map(function (v, i) {
-            var d = 20000000 + ((Math.floor(Math.random() * 20) + 1) * 10000) + ((Math.floor(Math.random() * 12) + 1) * 100) + Math.floor(Math.random() * 31) + 1;
-            var t = { hours: Math.floor(Math.random() * 22), minutes: Math.floor(Math.random() * 60) };
-            var t2 = Object.assign({}, t, { hours: t.hours + 1 });
+            //const d = 20000000 + ((Math.floor(Math.random() * 20) + 1) * 10000) + ((Math.floor(Math.random() * 12) + 1) * 100) + Math.floor(Math.random() * 31) + 1;
+            var d = _this.createDate();
+            //const t = { hours: Math.floor(Math.random() * 22), minutes: Math.floor(Math.random() * 60) };
+            var t = _this.createStartTime();
+            var t2 = _this.createEndTime();
+            //const t2 = Object.assign({}, t, { hours: t.hours + 1 });
             return {
                 id: i,
                 category_id: Math.floor(Math.random() * _this.ctgs.length),
                 start_date: d,
-                end_date: d,
+                end_date: d + Math.floor(Math.random() * 2),
                 start_time: t,
                 end_time: t2,
+                is_action: Math.floor(Math.random() * 2),
+                is_timed: Math.floor(Math.random() * 2),
                 color: enumvals[Math.floor(Math.random() * enumvals.length)],
                 title: "Logasfdsfsadfgafgasdfsadfasdfasdfasdfsadfadf" + i,
                 note: "Note" + i
             };
         });
         return arr;
+    };
+    createThings.prototype.createDate = function () {
+        var y = (((Math.floor(Math.random() * 20) + 1) + 2000) * 10000);
+        var m = ((Math.floor(Math.random() * 12) + 1) * 100);
+        var d = ((Math.floor(Math.random() * 31) + 1));
+        return y + m + d;
+    };
+    createThings.prototype.createStartTime = function () {
+        return (((Math.floor(Math.random() * 12)) + 1) * 100) + (Math.floor(Math.random() * 55) + 1);
+    };
+    createThings.prototype.createEndTime = function () {
+        return (((Math.floor(Math.random() * 11)) + 13) * 100) + (Math.floor(Math.random() * 55) + 1);
     };
     createThings.prototype.createActions = function () {
         var enumvals = Object.values(LogColor);
@@ -110,7 +127,7 @@ var createThings = /** @class */ (function () {
             return {
                 id: i, name: "action" + i, type: enumvals2[Math.floor(Math.random() * enumvals2.length)],
                 description: "actiondescription" + i, color: enumvals[Math.floor(Math.random() * enumvals.length)],
-                adverb: "actadv" + i,
+                adverb: "actadv" + i
             };
         });
         return arr;

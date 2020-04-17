@@ -14,7 +14,6 @@ import { ActionComponent } from './action/action.component';
 import * as Hammer from "hammerjs";
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG, HammerModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -33,7 +32,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatNativeDateModule,
     SharedModule,
     DragDropModule,
-    ScrollingModule
   ],
   providers: [MatDatepickerModule, MatNativeDateModule,{
       provide: HAMMER_GESTURE_CONFIG,

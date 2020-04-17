@@ -1,6 +1,6 @@
 
 <div>
-  <cdk-virtual-scroll-viewport style="height: 80vh;">
+
   <ng-container  *ngIf="(viewdatas && viewdatas.length > 0 && viewdatas[0].data.length > 0) then thenTemplate; else elseTemplate"></ng-container>
 <ng-template #thenTemplate>
   <div class="canvas-root"  #myCharts>
@@ -26,7 +26,7 @@
 </ng-template>
 
 
-</cdk-virtual-scroll-viewport>
+
 </div>
 
 

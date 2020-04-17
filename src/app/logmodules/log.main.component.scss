@@ -7,7 +7,6 @@ log-root{
   max-height: 100vh;
   padding: 0 !important;
   margin: 0 !important;
-  overflow: hidden;
   display: block;
 
 
@@ -103,13 +102,7 @@ h2 {
 }
 
 
-.log-body{
 
-}
-router-outlet{
-  overflow-x: hidden;
-
-}
 
 .add-fab-div{
   position: fixed;

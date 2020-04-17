@@ -35,8 +35,8 @@ export class LogService {
     //console.log(`n:${n}`)
     ipcRenderer.send('get_logs', { from: n, till: n + 35 });
     this.currentLogDate.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
+      //debounceTime(300),
+      //distinctUntilChanged(),
     ).subscribe(cd => {
       debounceTime(1000);
       const n = NumberFromLogDate({ ...this.currentLogDate.value, day: 1 });
@@ -61,7 +61,10 @@ export class LogService {
     ipcRenderer.send('get_categories');
     ipcRenderer.on('added_log_with_laa', (evt, res) => {
       this.toAdd.log.id = res;
-      this.currentLogDate.next(LogDateFromNumber(this.toAdd.log.start_date));
+      this.reloadLogs = true;
+      this.zone.run(() => { this.currentLogDate.next(LogDateFromNumber(this.toAdd.log.start_date)); });
+      console.log('added')
+      console.log(this.toAdd)
       this.toAdd = null;
     });
     ipcRenderer.on('deleted_log', (evt, res) => {
@@ -143,7 +146,7 @@ export class LogService {
     return this.currentLogDate.value;
   }
   tryAddLog() {
-
+    console.log('destroying')
     ipcRenderer.send('add_log_with_laa', {
       log: this.toAdd.log,
       laa: {

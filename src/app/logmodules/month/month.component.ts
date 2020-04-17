@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, NgZone, HostListener } from '@angular/core';
 import { Observable, BehaviorSubject, fromEvent } from 'rxjs';
 import { LogData, LogColor } from '../../data/log.data';
 import { LogService } from '../../services/log.service';
@@ -53,6 +53,9 @@ export class MonthComponent implements OnInit {
   readonly monthNames: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   readonly years: number[] = Array(1000).fill(2020).map((v, i) => v - i);
   //TODO: MAKE CURRENT YEAR TODO:\\
+  private screenHeight: number;
+  private screenWidth: number;
+  prevLeft: number = -200;
   daysinmonth: number;
   diffStartOfWeek: number = 0;
   monthLogs$: Observable<LogData[]>;
@@ -71,7 +74,7 @@ export class MonthComponent implements OnInit {
     private ds: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) { this.getScreenSize(); }
   date: BehaviorSubject<MDate>;
   maxDate: Date = new Date(Date.now());
   currentMonth: boolean = false;
@@ -155,9 +158,9 @@ export class MonthComponent implements OnInit {
     if (d > this.daysinmonth) {
       md.month++; this.clampDate(); return this.logService.changeDate({ ...md, day: 1 });
     }
-    this.router.navigate(['/logs/day']);
-    this.logService.changeDate({ ...this.date.value, day: d });
 
+    this.logService.changeDate({ ...this.date.value, day: d });
+    this.router.navigate(['/logs/day']);
   }
 
   onpan(event) {
@@ -207,6 +210,22 @@ export class MonthComponent implements OnInit {
     if (change) md.year += Math.sign(md.month - newm);
     md.month = newm;
     md.year = md.year.clamp(1900, now.year());
+  }
+  drop(event) {
+    this.prevLeft += event.distance.x;
+    if (Math.abs(event.distance.x) >= Math.min(this.screenWidth / 4, 1200 / 4)) {
+      console.log('sdadas')
+      this.date.value.month -= Math.sign(event.distance.x);
+      this.changeDateTimeout(0);
+    }
+  }
+
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+    //console.log(this.screenHeight, this.screenWidth);
   }
 }
 interface MDate {

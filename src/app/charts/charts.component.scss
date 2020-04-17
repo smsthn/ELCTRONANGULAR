@@ -154,8 +154,8 @@ overflow-x: hidden;
 }
 
 .loading-prog{
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   z-index: 1;
   position: fixed;
   top: 0;
@@ -204,16 +204,37 @@ overflow-x: hidden;
     }
     .custom-date{
       position: fixed;
+      width: 100%;
       top: 40px;
       left: 25vw;
       height: 35px;
-      overflow: hidden;
+      overflow-y: hidden;
+      .from-date{
+        position: fixed;
+        width: fit-content;
+        left: 0;
+        height: 10px;
+        overflow-y: hidden;
+      }
+      .till-date{
+        position: fixed;
+        width: fit-content;
+        right: 0;
+        height: 10px;
+        overflow-y: hidden;
+      }
+      .till-date:hover,.from-date:hover{
+        height: fit-content;
+      }
     }
   }
   .charts-head-left:hover{
     width: fit-content;
     .custom-date{
       height: fit-content;
+      .till-date,.from-date{
+        height: fit-content;
+      }
     }
   }
   .charts-body{

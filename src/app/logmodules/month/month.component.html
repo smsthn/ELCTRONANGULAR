@@ -1,6 +1,10 @@
 
+<div cdkDropList
+cdkDropListAutoScrollDisabled="true"
+     (cdkDropListDropped)="drop($event)"
+>
 
-<div class="log-month-root"
+<div class="log-month-root" cdkDragLockAxis="x"  cdkDrag
 (wheel)="mouseWheelEvent($event,'month')">
 <div class="day-names">
   <h3 *ngFor="let dn of weekDays">{{dn}}</h3>
@@ -40,6 +44,18 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
+<div class="custom-place-holder-left"  cdkDrag>
+  <h1>
+    Previous Month
+  </h1>
+</div>
+<div class="custom-place-holder-right" *ngIf="!currentMonth"  cdkDrag>
+  <h1>
+    Next Month
+  </h1>
+</div>
+</div>
+
 </div>
 <div class="small-date">
 
@@ -53,3 +69,4 @@
      (keyup)="changeMonth($event)" [(ngModel)]="date.value.month">
   </mat-form-field>
 </div>
+

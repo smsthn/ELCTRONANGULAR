@@ -10,7 +10,7 @@ import { ActionSubject } from '../../data/action.subject';
 import { Category } from '../../data/category';
 import { Keyword } from '../../data/keyword';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { NumberFromLogDate, LogDate, NumberToTime, NumberToMinutes } from '../../data/log.date';
+import { NumberFromLogDate, LogDate, NumberToTime, NumberToMinutes, DateFromLogDate } from '../../data/log.date';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, delay } from 'rxjs/operators';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -135,6 +135,7 @@ export class LogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+
     if (!this.deleted) {
       if (this.isEdit) {
         if (this.log.title || (this.log.note)) {
@@ -144,6 +145,7 @@ export class LogComponent implements OnInit, OnDestroy {
           this.logService.deleteLog(this.log);
         }
       } else {
+        console.log('lese')
         if (this.log.title || this.log.note) {
           this.logService.toAdd.log = this.log;
           this.logService.tryAddLog();
@@ -157,7 +159,7 @@ export class LogComponent implements OnInit, OnDestroy {
       { ...this.data.log, is_timed: !!this.data.log.is_timed, is_action: !!this.data.log.is_action }
       : null;
 
-    var now = _moment();
+    var now = _moment(DateFromLogDate(this.logService.getDate()));
     var num = now.toDate().toNumber();//NumberFromLogDate(new LogDate(now.toDate()));
     var time = (now.hour() * 100) + now.minute();
     if (!this.log) {

@@ -53,16 +53,21 @@ class createThings {
   createLogs() {
     const enumvals = Object.values<LogColor>(LogColor);
     const arr = new Array(10000).fill(null).map((v, i) => {
-      const d = 20000000 + ((Math.floor(Math.random() * 20) + 1) * 10000) + ((Math.floor(Math.random() * 12) + 1) * 100) + Math.floor(Math.random() * 31) + 1;
-      const t = { hours: Math.floor(Math.random() * 22), minutes: Math.floor(Math.random() * 60) };
-      const t2 = Object.assign({}, t, { hours: t.hours + 1 });
+      //const d = 20000000 + ((Math.floor(Math.random() * 20) + 1) * 10000) + ((Math.floor(Math.random() * 12) + 1) * 100) + Math.floor(Math.random() * 31) + 1;
+      const d = this.createDate();
+      //const t = { hours: Math.floor(Math.random() * 22), minutes: Math.floor(Math.random() * 60) };
+      const t = this.createStartTime();
+      const t2 = this.createEndTime();
+      //const t2 = Object.assign({}, t, { hours: t.hours + 1 });
       return {
         id: i,
         category_id: Math.floor(Math.random() * this.ctgs.length),//this.ctgs[Math.floor()]
         start_date: d,
-        end_date: d,
+        end_date: d + Math.floor(Math.random() * 2),
         start_time: t,
         end_time: t2,
+        is_action: Math.floor(Math.random() * 2),
+        is_timed: Math.floor(Math.random() * 2),
         color: enumvals[Math.floor(Math.random() * enumvals.length)],
         title: `Logasfdsfsadfgafgasdfsadfasdfasdfasdfsadfadf${i}`,
         note: `Note${i}`
@@ -70,6 +75,18 @@ class createThings {
     }
     );
     return arr;
+  }
+  createDate() {
+    const y = (((Math.floor(Math.random() * 20) + 1) + 2000) * 10000);
+    const m = ((Math.floor(Math.random() * 12) + 1) * 100);
+    const d = ((Math.floor(Math.random() * 31) + 1));
+    return y + m + d;
+  }
+  createStartTime() {
+    return (((Math.floor(Math.random() * 12)) + 1) * 100) + (Math.floor(Math.random() * 55) + 1);
+  }
+  createEndTime() {
+    return (((Math.floor(Math.random() * 11)) + 13) * 100) + (Math.floor(Math.random() * 55) + 1);
   }
 
   createActions() {
@@ -79,8 +96,7 @@ class createThings {
       return {
         id: i, name: `action${i}`, type: enumvals2[Math.floor(Math.random() * enumvals2.length)],
         description: `actiondescription${i}`, color: enumvals[Math.floor(Math.random() * enumvals.length)]
-        , adverb: `actadv${i}`,
-
+        , adverb: `actadv${i}`
       }
     });
     return arr;

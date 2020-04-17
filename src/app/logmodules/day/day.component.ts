@@ -105,7 +105,8 @@ export class DayComponent implements OnInit {
     this.logService.getLog(logId);
   }
   drop(event: CdkDragDrop<LogData[]>) {
-    if (event.distance.x >= Math.min(this.screenWidth / 2, 1200 / 2)) {
+
+    if (Math.abs(event.distance.x) >= Math.min(this.screenWidth / 2, 1200 / 2)) {
       this.dialog.open(DeleteLogComponent, { data: { log: event.container.data[event.previousIndex]}})
     }
   }
@@ -165,7 +166,7 @@ export class DayComponent implements OnInit {
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-   // console.log(this.screenHeight, this.screenWidth);
+    //console.log(this.screenHeight, this.screenWidth);
   }
 
 }
