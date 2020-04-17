@@ -5,6 +5,5 @@ distq
 .vscode
 release
 sql/**/*.js
-sql/*.js
 src/**/*.js
 sql/**/*.js.map
