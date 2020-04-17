@@ -1,0 +1,117 @@
+mat-drawer-container{
+  min-height: 100vh;
+}
+.root-title{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  color: wheat;
+  display:flex;
+  flex-direction: row;
+  h1{
+    text-align: center;
+    width: 100%;
+  }
+  mat-icon{
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    transform: scale(2);
+  }
+
+}
+mat-drawer-container{
+  z-index: 1;
+    min-width: 50px;
+  mat-drawer{
+    position: fixed;
+    top:60px;
+    background-color: #80103d;
+    div{
+      display: flex;
+    flex-direction: column;
+    height: 100%;
+    button{
+      font-size: 26px;
+       padding: 20px 50px 20px 50px;
+       text-align: left;
+       border-radius: 0;
+       background-color: rgba(151, 150, 150, 0.199);
+       mat-icon{
+         position: absolute;
+         left: 10px;
+         transform: scale(2);
+          margin-right: 15px;
+           padding-bottom: 8px;
+       }
+    }
+    }
+  }
+}
+mat-toolbar{
+  transition: height 400ms ease,width 400ms ease;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  display: flex;
+  h1{
+    position: absolute;
+    z-index: -1;
+  }
+  div{
+    transition: transform  200ms ease, opacity 100ms ease;
+    button{
+      background-color: transparent;
+    }
+  }
+}
+mat-toolbar{
+  h1{ width: 100%;
+    text-align: center;
+  }
+}
+@media only screen and (max-height:750px){
+  mat-toolbar{
+    height: 50px;
+    width: 60%;
+    button{
+      mat-icon{
+        transform: scale(0.7);
+      }
+    }
+    h1{
+      position: relative;
+      right: 0;
+    }
+  }
+  mat-drawer-container{
+    min-width: 30px;
+  mat-drawer{
+    top:50px;
+    div{
+    button{
+      font-size: 18px;
+       padding: 10px 25px 10px 50px;
+       text-align: left;
+       border-radius: 0;
+       background-color: rgba(151, 150, 150, 0.199);
+       mat-icon{
+         position: absolute;
+         left: 10px;
+         transform: scale(1);
+          margin-right: 15px;
+           padding-bottom: 8px;
+       }
+    }
+    }
+  }
+}
+}
+
+  // mat-sidenav:not(.mat-drawer-opened) {
+  //   transform: translate3d(0, 0, 0) !important;
+  //   visibility: visible !important;
+  //   width: 60px !important;
+  //   overflow: hidden;
+  // }

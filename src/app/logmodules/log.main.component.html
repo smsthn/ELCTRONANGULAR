@@ -1,0 +1,37 @@
+<div class="log-root">
+  <div class="fixed-top">
+    <div class="frst-line-top">
+        <mat-slider [min]="1950" [max]="maxDate.getFullYear()" (change)="changeDate()" [(ngModel)]="logDate.year" [thumbLabel]="true"></mat-slider>
+        <!--[(ngModel)]="value"-->
+        <div>
+            <h2 >{{logDate.year}}/</h2>
+            <h2 >{{logDate.month}}</h2>
+        </div>
+        <mat-slider [min]="1" [max]="maxDate.getFullYear()
+        === logDate.year?maxDate.getMonth() + 1 : 12" (change)="changeDate()" [(ngModel)]="logDate.month" class="example-margin" [thumbLabel]="true"></mat-slider>
+    </div>
+
+    <div class="nd-line-top" *ngIf="!isMonth">
+        <div>
+          <button mat-mini-fab (click)="changeDate('',-1)"></button>
+        <h1>{{logDate.day}}</h1>
+        <button mat-mini-fab (click)="changeDate('',1)"></button>
+        </div>
+
+    </div>
+  </div>
+
+
+  <div class="log-body">
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet" ></router-outlet>
+    </div>
+
+  </div>
+  <div class="add-fab-div">
+    <button mat-fab>
+      <mat-icon svgIcon="add36" class="add-fab" (click)="addLog()"></mat-icon>
+    </button>
+  </div>
+</div>
+

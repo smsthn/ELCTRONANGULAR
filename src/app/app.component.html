@@ -1,0 +1,63 @@
+<!--
+  <app-log></app-log>
+<div class="root-title">
+  <mat-icon svgIcon="menu18" (click)="drawer.toggle()"></mat-icon>
+  <h1>
+    Life Logs
+  </h1>
+</div>
+-->
+
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleDrawer(drawer,150)">
+    <mat-icon svgIcon="menu18">Menu</mat-icon>
+  </button>
+  <div style="display: flex;flex-direction: row;"
+  [style.transform]="isExpanded?'scaleX(0) translateX(-100%)':'scaleX(1) translateX(0)'"
+  [style.opacity]="isExpanded?0:1">
+      <button mat-flat-button (click)="goTo('/logs/month')">
+      <mat-icon svgIcon="month18" ></mat-icon>
+    </button>
+    <button mat-flat-button  (click)="goTo('/logs/day')">
+      <mat-icon svgIcon="day18"></mat-icon>
+
+    </button>
+    <button mat-flat-button  (click)="goTo('/charts')">
+      <mat-icon svgIcon="chart18"></mat-icon>
+
+    </button>
+    <button mat-flat-button style="margin-top: auto;"  (click)="goTo('/settings')">
+      <mat-icon svgIcon="settings18"></mat-icon>
+
+    </button>
+    </div>
+  <h1>Life Log</h1>
+
+</mat-toolbar>
+<mat-drawer-container class="example-container" >
+  <mat-drawer #drawer  class="example-sidenav" mode="over">
+
+    <div>
+      <button mat-flat-button  (click)="goTo('/logs/month');toggleDrawer(drawer,150);">
+      <mat-icon svgIcon="month18" ></mat-icon>
+      Month View
+    </button>
+    <button mat-flat-button  (click)="goTo('/logs/day');toggleDrawer(drawer,150);">
+      <mat-icon svgIcon="day18"></mat-icon>
+      Day View
+    </button>
+    <button mat-flat-button  (click)="goTo('/charts');toggleDrawer(drawer,150);">
+      <mat-icon svgIcon="chart18"></mat-icon>
+      Charts
+    </button>
+    <button mat-flat-button style="margin-top: auto;"  (click)="goTo('/settings');toggleDrawer(drawer,150);">
+      <mat-icon svgIcon="settings18"></mat-icon>
+      Settings
+    </button>
+    </div>
+  </mat-drawer>
+
+
+<router-outlet></router-outlet>
+</mat-drawer-container>
+

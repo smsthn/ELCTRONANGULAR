@@ -1,0 +1,222 @@
+.action-type-btn-group, .chart-type-btn-group{
+ width: 100%;
+ mat-button-toggle{
+   width: 100%;
+ }
+}
+
+.selected-scroll{
+  height: 50vh;
+}
+.all-scroll,.selected-scroll{
+  overflow-x: hidden;
+  width: 100%;
+  *{
+    overflow-x: hidden;
+  }
+  button{
+    width: 100%;
+    margin-bottom: 1px;
+    margin-left: 1px;
+  }
+}
+.scroll::-webkit-scrollbar{
+  width: 5px;
+  background-color: black;
+}
+.scroll::-webkit-scrollbar-thumb{
+  background-color: white;
+}
+
+.selected-title-div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  button{
+    width: 50px;
+    height: 50px;
+  }
+  h2{
+    width: 100%;
+  text-align: center;
+  color: white;
+}
+}
+.custom-date{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  mat-form-field{
+    width: 100%;
+    margin: 5px 50px;
+    color: white;
+  }
+}
+
+.chart-type-btn-group{
+  .mat-button-toggle {
+      background-color: rgb(32, 1, 23);
+      //color: red;
+  }
+
+  .mat-button-toggle-checked {
+    background-color: rgb(36, 36, 36);
+    //color: blue;
+  }
+}
+.top-scroll-root{
+.scroll-root{
+  width: 0;
+  opacity: 0;
+  height: 0;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+
+  transition: opacity 600ms ease ,height 400ms ease;
+}
+}
+.top-scroll-root:hover{
+  .scroll-root{
+    opacity: 1;
+    width: 97%;
+    height: 30vh;
+
+  }
+}
+
+.charts-head-left{
+  position: fixed;
+  top: 62px;
+  z-index: 1;
+  width: 47%;
+  .action-type-btn-group{
+    width: 100%;
+    .mat-button-toggle {
+      transition: all 1100ms ease;
+      width: 100%;
+        background-color: rgb(95, 39, 70);
+        //color: red;
+    }
+
+    .mat-button-toggle-checked {
+      width: 100%;
+      background-color: black;
+      //color: blue;
+    }
+    margin-bottom: 3px;
+  }
+  mat-form-field{
+    background-color: rgba(29, 29, 29, 0.829);
+    border-radius: 15px;
+    color: white;
+    padding: 10px;
+  }
+}
+.charts-head-right{
+  transition: top 200ms ease, width 400ms ease;
+    position: fixed;
+    top: 62px;
+    right: 0;
+    z-index: 1;
+    width: 50%;
+  .view-type-btn-group{
+    width: 100%;
+    .mat-button-toggle {
+      width: 100%;
+        background-color: rgb(94, 27, 70);
+        //color: red;
+    }
+
+    .mat-button-toggle-checked {
+      width: 100%;
+      background-color: black;
+      //color: blue;
+    }
+    margin-bottom: 3px;
+  }
+}
+.charts-body{
+margin-top: 110px;
+router-outlet{
+  overflow-x: hidden;
+}
+overflow-x: hidden;
+}
+.selected-title-div{
+  button{
+    transform: scale(0.5);
+    mat-icon{
+      transform: scale(2);
+    }
+  }
+}
+
+.loading-prog{
+  height: 100vh;
+  width: 100vh;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.568);
+  mat-spinner{
+    //transform: scale(3);
+    position: fixed;
+    //margin: auto;
+    top: 40%;
+    left: 45%;
+  }
+  h1{
+    padding: 30px 30px;
+    background-color: rgba(0, 0, 0, 0.767);
+    position: relative;
+    top: 50px;
+    left: 0;
+    color: white;
+    text-align: center;
+  }
+}
+@media only screen and (max-height:750px){
+  .charts-head-right{
+    top: 0;
+    width: 40%;
+  }
+  .charts-head-left{
+    left: 48vw;
+    top : 35px;
+    .action-type-btn-group{
+
+      flex-direction: column;
+      width: fit-content;
+      .mat-button-toggle {
+        height: 0px;
+      }
+      .mat-button-toggle-checked {
+        height: 35px;
+      }
+    }
+    .action-type-btn-group:hover{
+      .mat-button-toggle {
+        height: fit-content;
+      }
+    }
+    .custom-date{
+      position: fixed;
+      top: 40px;
+      left: 25vw;
+      height: 35px;
+      overflow: hidden;
+    }
+  }
+  .charts-head-left:hover{
+    width: fit-content;
+    .custom-date{
+      height: fit-content;
+    }
+  }
+  .charts-body{
+    margin-top: 70px;
+  }
+}

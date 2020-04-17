@@ -1,0 +1,111 @@
+<div class="charts-head-left">
+  <mat-button-toggle-group class="action-type-btn-group"
+ name="ViewPeriod" aria-label="View Period"
+ multiple="false" *ngIf="currentView !== 'Detailed'"
+ (change)="ChangeViewPeriod($event)"
+ [(ngModel)]="viewPeriod"
+ >
+  <mat-button-toggle  value="this_week">This Week</mat-button-toggle>
+  <mat-button-toggle value="this_month">This Month</mat-button-toggle>
+  <mat-button-toggle value="this_year">This Year</mat-button-toggle>
+  <mat-button-toggle value="custom">Custom Date</mat-button-toggle>
+</mat-button-toggle-group>
+<div class="custom-date" *ngIf="viewPeriod === 'custom' && currentView !== 'Detailed'">
+  <mat-form-field>
+    <input matInput [matDatepicker]="fromPicker" (dateChange)="changeDate()" [max]="maxDate"
+     [(ngModel)]="from" placeholder="From" required disabled>
+    <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+    <button matSuffix [matDatepickerToggle]="fromPicker"></button>
+    <mat-datepicker disabled="false" touchUi #fromPicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="tillPicker" (dateChange)="changeDate()" [max]="maxDate"
+     placeholder="Till" [(ngModel)]="till" required disabled>
+    <mat-datepicker-toggle matSuffix [for]="tillPicker"></mat-datepicker-toggle>
+    <button matSuffix [matDatepickerToggle]="tillPicker"></button>
+    <mat-datepicker disabled="false" touchUi #tillPicker></mat-datepicker>
+  </mat-form-field>
+
+</div>
+</div>
+<div class="charts-head-right">
+  <mat-button-toggle-group class="view-type-btn-group"
+ name="ViewPeriod" aria-label="View Period"
+ multiple="false" *ngIf="currentView !== 'Detailed'"
+ (change)="ChangeViewType($event)"
+ [(ngModel)]="currentView"
+ >
+  <mat-button-toggle  value="Time">Time</mat-button-toggle>
+  <mat-button-toggle value="Sum">Sum</mat-button-toggle>
+  <mat-button-toggle value="Count">Count</mat-button-toggle>
+</mat-button-toggle-group>
+</div>
+
+
+
+
+<div class="charts-body">
+
+<div class="top-scroll-root">
+
+<mat-button-toggle-group class="chart-type-btn-group"
+ name="ChartType" aria-label="Chart Type"
+ multiple="false" *ngIf="currentView !== 'Detailed'"
+ (change)="chartTypeChanged($event)"
+ [(ngModel)]="chartType"
+ >
+  <mat-button-toggle (mouseenter)="chartType = 'action';chartTypeChanged($event);" value="action">Action</mat-button-toggle>
+  <mat-button-toggle (mouseenter)="chartType = 'category';chartTypeChanged($event);" value="category">Category</mat-button-toggle>
+  <mat-button-toggle (mouseenter)="chartType = 'keyword';chartTypeChanged($event);" value="keyword">Keyword</mat-button-toggle>
+</mat-button-toggle-group>
+<div class="scroll-root"  *ngIf="currentView !== 'Detailed'">
+  <cdk-virtual-scroll-viewport class="all-scroll scroll" *ngIf="allData$" itemSize="18" style="height:30vh">
+  <div class="data" *ngFor="let data of allData$ | async">
+    <button mat-flat-button (click)="selectItem(data)">{{data.name}}</button>
+  </div>
+</cdk-virtual-scroll-viewport>
+<div class="selected-scroll" >
+  <div class="selected-title-div">
+    <h2>Selected Actions:</h2>
+    <button mat-mini-fab (click)="unselect_all('action')"><mat-icon svgIcon="cancel18" style="overflow: hidden;"></mat-icon></button>
+  </div>
+  <cdk-virtual-scroll-viewport class="scroll"  itemSize="18" style="height:5vh">
+  <div *ngFor="let action of selectedActions$ | async">
+    <button mat-flat-button (click)="unselectItem(action,'action')">{{action.name}}</button>
+  </div>
+  </cdk-virtual-scroll-viewport>
+  <div class="selected-title-div">
+    <h2>Selected Categories:</h2>
+    <button mat-mini-fab (click)="unselect_all('category')"><mat-icon svgIcon="cancel18" style="overflow: hidden;"></mat-icon></button>
+  </div>
+  <cdk-virtual-scroll-viewport class="scroll"  itemSize="18" style="height:5vh">
+  <div *ngFor="let category of selectedCategories$ | async">
+    <button mat-flat-button (click)="unselectItem(category,'category')">{{category.name}}</button>
+  </div>
+  </cdk-virtual-scroll-viewport>
+  <div class="selected-title-div">
+    <h2>Selected Keywords:</h2>
+    <button mat-mini-fab (click)="unselect_all('keyword')" >
+      <mat-icon svgIcon="cancel18" style="overflow: hidden;"></mat-icon></button>
+  </div>
+  <cdk-virtual-scroll-viewport class="scroll"  itemSize="18" style="height:5vh">
+  <div *ngFor="let keyword of selectedKeywords$ | async">
+    <button mat-flat-button (click)="unselectItem(keyword,'keyword')">{{keyword.name}}</button>
+  </div>
+  </cdk-virtual-scroll-viewport>
+</div>
+</div>
+</div>
+<router-outlet>
+
+</router-outlet>
+
+</div>
+
+<div class="loading-prog" *ngIf="loading">
+<mat-progress-bar
+  mode="buffer">
+</mat-progress-bar>
+<h1>Loading Data</h1>
+<mat-spinner [color]="'accent'" [strokeWidth]="10" [diameter]="200"></mat-spinner>
+</div>

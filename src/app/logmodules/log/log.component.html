@@ -1,0 +1,100 @@
+
+<div class="log-root" cdkDrag
+   cdkDragRootElement=".cdk-overlay-pane" cdkDragBoundary='html'
+   cdkDragHandle>
+  <div class="colorPicker">
+    <div *ngFor="let color of colors; let i=index">
+      <button [style.background-color]="color" (click)="changeLogColor(i)"></button>
+    </div>
+  </div>
+    <mat-card [className]="logcolor">
+      <mat-card-title-group class="things-title">
+        <mat-slide-toggle class="timed-slider" [checked]="log.is_timed" (change)="changeTimed()">Is Timed</mat-slide-toggle>
+        <mat-form-field *ngIf="allCategories" [ngClass]="logcolor">
+          <mat-label>Category</mat-label>
+
+          <mat-select  style="background-color: #00000010; border-radius: 15px;"
+           [ngClass]="logcolor+' scroll-select'"  [(ngModel)]="log.category_id">
+           <input matInput #addCtgInput class="add-category-input"
+            placeholder="AddCategory" autocomplete="off"
+            (keydown)="addCtgInput.value = addCtg($event, addCtgInput.value)?'':addCtgInput.value">
+            <mat-option [ngClass]="logcolor"  *ngFor="let ctg of allCategories" [value]="ctg.id" >
+              {{ctg.name}}
+            </mat-option>
+
+          </mat-select >
+        </mat-form-field>
+        <mat-slide-toggle class="action-note-slider" [checked]="log.is_action" (change)="changeLogType()">IsAction</mat-slide-toggle>
+      </mat-card-title-group>
+
+
+          <ng-container *ngIf="!log.is_action; else elseTemplate" [@inOutAnimation]><!--Add ! to the condition-->
+            <mat-card-header>
+              <mat-card-title class="log-title" >
+                <input matInput placeholder="Title" [(ngModel)]="log.title" >
+             </mat-card-title>
+            </mat-card-header>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <app-action [isEdit]="isEdit" [logId]="log.id" (logTitle)="changeTitle($event)"></app-action>
+          </ng-template>
+
+
+
+
+      <mat-card-content
+
+      >
+        <div class="note-text-area">
+          <textarea matInput placeholder="Note" [(ngModel)]="log.note"></textarea>
+        <button class="delete_log_fab" (click)="deleteLog()" mat-fab><mat-icon   class="mat-icon" svgIcon="delete36w"></mat-icon></button>
+        </div>
+        <div class="log-card-content">
+          <mat-form-field class="time">
+            <mat-label>Start time</mat-label>
+            <input matInput [max]="maxDate"
+            (dateChange)="changeDate(true)"
+             [matDatepicker]="startpicker" [(ngModel)]="startDate" required disabled>
+            <mat-datepicker-toggle matSuffix
+
+             [for]="startpicker"></mat-datepicker-toggle>
+            <mat-datepicker disabled="false" touchUi
+            #startpicker ></mat-datepicker>
+          </mat-form-field>
+
+          <div class="log-time-picker" *ngIf="this.log.is_timed" [@inOutAnimation]>
+            <div class="time-input-container">
+              <input class="time-input-h" matInput (keypress)="numberOnly($event)" placeholder="Time: HH:mm" [value]="displayHStart"
+                (wheel)="timeScroll($event,true,true)">
+              <p>:</p>
+              <input class="time-input-m" matInput (keypress)="numberOnly($event)" [value]="displayMStart" (wheel)="timeScroll($event,true,false)">
+            </div>
+            <mat-slider #StartTimeSlider [min]="0" [max]="94" [step]="1" [(ngModel)]="timeStart" (input)="changeTime($event,true)"></mat-slider>
+          </div>
+        </div>
+        <div class="log-card-content" *ngIf="this.log.is_timed" [@inOutAnimation]>
+          <mat-form-field class="time">
+            <mat-label>End time</mat-label>
+            <input matInput [max]="maxDate"
+            (dateChange)="changeDate(false)"
+             [matDatepicker]="endpicker"
+             [(ngModel)]="endDate" required disabled>
+            <mat-datepicker-toggle matSuffix
+
+              [for]="endpicker"></mat-datepicker-toggle>
+            <mat-datepicker disabled="false" touchUi    #endpicker></mat-datepicker>
+          </mat-form-field>
+
+          <div class="log-time-picker">
+            <div class="time-input-container">
+              <input class="time-input-h" matInput (keypress)="numberOnly($event)" placeholder="Time: HH:mm" [value]="displayHEnd"
+                (wheel)="timeScroll($event,false,true)">
+              <p>:</p>
+              <input class="time-input-m" matInput (keypress)="numberOnly($event)" [value]="displayMEnd" (wheel)="timeScroll($event,false,false)">
+            </div>
+            <mat-slider #EndTimeSlider [min]="0" [max]="95" [step]="1" [(ngModel)]="timeEnd" (input)="changeTime($event,false)"></mat-slider>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+</div>

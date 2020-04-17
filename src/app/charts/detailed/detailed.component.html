@@ -1,0 +1,32 @@
+<button mat-flat-button (click)="getBack()">Back To Charts</button>
+<h2 *ngIf="!!action">{{action.name}}</h2>
+<div *ngFor="let d of datas, let i=index" >
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>{{d.title.replace(action.name,'')}}</mat-card-title>
+    <mat-card-subtitle>{{d.category_name}}</mat-card-subtitle>
+    <mat-card-subtitle style="text-align: end;">From: {{startDates[i]}}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="endDates.length > 0" style="text-align: end;">Till: {{endDates[i]}}</mat-card-subtitle>
+    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    {{display[i]}}
+    <mat-progress-spinner
+        class="example-margin"
+        color="primary"
+        mode="determinate"
+        [value]="progress[i]/full *100">
+    </mat-progress-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary">Action Stats</button>
+  </mat-card-actions>
+</mat-card>
+<!--
+  TODO:
+  expand and view details like sum indivisually and duration and so and give additional acions
+  like click on subject name to get info about it instead and add tooltip with some more info
+  TODO:
+-->
+</div>

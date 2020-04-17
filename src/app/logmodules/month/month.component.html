@@ -1,0 +1,55 @@
+
+
+<div class="log-month-root"
+(wheel)="mouseWheelEvent($event,'month')">
+<div class="day-names">
+  <h3 *ngFor="let dn of weekDays">{{dn}}</h3>
+</div>
+  <mat-grid-list cols="7" rows="5" rowHeight="fit">
+  <mat-grid-tile [@inOutAnimation]
+
+  *ngFor="let day of monthDayLogs; let i=index"
+  >
+  <mat-card class="day-card"
+  (click)="goToDay(i)">
+    <h3 class="day-num" *ngIf="i>=diffStartOfWeek && i<daysinmonth + diffStartOfWeek">{{i+1 - diffStartOfWeek}}</h3>
+          <ng-container *ngIf="!currentMonth || maxDate.getDate()>=(i+1 - diffStartOfWeek); else elseTemplate">
+            <ul class="day" *ngFor="let log of day; let j=index">
+              <li class="log" >
+                <ng-container *ngIf="log.id < 0; else elseTemplate">
+                  <button mat-raised-button style="background-color: transparent !important;"
+                  (click)="goToDay(i)">
+                  +{{log.category_id}} more
+                </button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <button mat-raised-button
+                    [style.background-color]="colors[logColors.indexOf(log.color)]"
+                    [style.color]="log.color.includes('white')?'black':'white'"
+                      (click)="openDialog($event,log.id)">
+                    <mat-icon *ngIf="log.is_timed" svgIcon="time18"></mat-icon>
+                    <mat-icon [svgIcon]="log.is_action?'action18':'note18'"></mat-icon>
+                    {{log.title}}
+                  </button>
+                </ng-template>
+              </li>
+            </ul>
+          </ng-container>
+          <ng-template #elseTemplate>
+          </ng-template>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
+<div class="small-date">
+
+  <mat-form-field>
+    <input matInput type="number" (wheel)="mouseWheelEvent($event,'year')"
+     maxlength="4" (keyup)="changeYear($event)"  placeholder="Year" [(ngModel)]="date.value.year">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" maxlength="2" (wheel)="mouseWheelEvent($event,'month')"
+    [placeholder]="monthNames[date.value.month - 1]"
+     (keyup)="changeMonth($event)" [(ngModel)]="date.value.month">
+  </mat-form-field>
+</div>

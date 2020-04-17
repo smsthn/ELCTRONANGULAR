@@ -1,0 +1,327 @@
+@media only screen and (max-width:600px) {
+
+}
+@media only screen and (max-width:600px) {
+  ::ng-deep .cdk-overlay-backdrop{
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+  ::ng-deep .full-width-dialog{
+    min-width: 100%;
+    min-height: 100%;
+
+  }
+  .log-root{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+  mat-card{
+    position: fixed !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100% - 33px) !important;
+    top:33px;
+    padding:3px !important;
+    margin:0 !important;
+    border-radius: 0 !important;
+    .things-title{
+      border: none;
+      .timed-slider{
+        position: absolute;
+        left: 0;
+        top: 50px;
+      }
+      .action-note-slider{
+        position: absolute;
+        left:0;
+        top: 15px;
+      }
+      mat-form-field{
+        position: absolute;
+        top: 0px;
+        left: 10%;
+        width: 40%;
+      }
+    }
+    mat-card-title{
+      position: relative;
+      top: 50px;
+      left: -10%;
+    }
+    .note-text-area{
+      padding-top: 40px !important;
+      margin: 0 !important;
+    }
+    .delete_log_fab{
+      position: fixed;
+      top: 40px;
+      right: 0;
+    }
+  }
+  .colorPicker{
+    background-color: wheat !important;
+    position: fixed;
+    margin: 0 !important;
+    justify-content: space-evenly;
+    border-radius: 0 !important;
+    top:0;
+    left: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+  }
+}
+.log-root{
+  min-width: 500px;
+  max-width: 1000px;
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  @media only screen and (max-width:600px) {
+  flex-direction: column;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  }
+}
+mat-card{
+  width: 70vw;
+  //border-radius: 25px 0 0 25px;
+  // @media only screen and (max-width:600px) {
+  //   margin-left: 1vw;
+  //   min-width: 60vw;
+  //   max-width: 61vw;
+  //   overflow-x: hidden;
+  // border-radius: 0 0 18px 10px;
+  // }
+  min-height: 10vh;
+  max-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+
+  mat-card-title-group{
+    margin-bottom: 10px;
+    border-bottom: dotted 1px white  ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    ::ng-deep .mat-slide-toggle-content{
+      font-family: 'Orbitron', sans-serif;
+    }
+    mat-form-field{
+      flex: 1;
+      mat-select{
+        background-color: #00000004;
+
+      }
+    }
+
+    .timed-slider{
+      justify-self: center;
+      align-self: center;
+    }
+    .action-note-slider{
+      justify-self: center;
+      align-self: center;
+    }
+    @media only screen and (max-width:600px) {
+      flex-wrap: wrap;
+      mat-form-field{
+        order: 3;
+      }
+    }
+  }
+}
+mat-card-header{
+  text-align: center;
+  display: block;
+
+}
+.log-title{
+  font-size: 32px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 3px rgba($color: #ffffff, $alpha: 0.5);
+}
+mat-card-content{
+  flex: 2;
+  display: flex;
+  height: 100%;
+  //background-color: black;
+  margin: 0 0 0 0;
+  flex-direction: column;
+  width: 95%;
+}
+.note-text-area{
+  flex: 2;
+  margin: 0 0 0 20px;
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  textarea{
+    font-size: 24px;
+    font-weight: lighter;
+    padding: 15px;
+    font-family: 'Lato', sans-serif;
+    flex: 2;
+    width: 100%;
+    min-height: 18vh;
+    resize: none;
+    justify-self: stretch;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  border:none;
+  box-sizing: border-box;
+  border-radius: 2px;
+  }
+  .delete_log_fab{
+    margin: auto;
+    margin-left: 20px;
+  }
+}
+mat-divider{
+  background-color: white;
+  display: inline;
+}
+.log-card-content{
+
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.time, .log-time-picker{
+  flex: 1;
+  display: block;
+}
+.time{
+  margin: 3px 15px 0 15px;
+}
+mat-slider{
+  width: 100%;
+  margin-top: 0;
+}
+.log-time-picker{
+  margin: 0 15px 0 15px;
+}
+.time-input-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 0;
+  width: 100%;
+  justify-content: center;
+  input, p{
+    z-index: 1;
+  overflow: hidden;
+  width: 20px;
+    display: inline-block;
+    text-align: center;
+    margin: 0 0 0 0;
+  }
+}
+
+
+
+
+
+
+
+.colorPicker{
+  background-color: rgba($color: gray, $alpha: 0.7);
+  @media only screen and (min-width:600px){
+ position: relative;
+  }
+
+  z-index: 0;
+  right: 1vmax;
+  display: flex;
+  flex-direction: column;
+  max-width: 30vw;
+  margin-left: 8px;
+  //border-radius: 0 25px 25px 0;
+  // @media only screen and (max-width:600px) {
+  //   flex-direction: row;
+  //   border-radius: 25px 25px 0 0;
+  //   flex-wrap: wrap;
+  //   min-width: 69vw;
+  //   max-width: 70vw;
+  // }
+  button{
+    margin: 10px;
+    @media only screen and (max-width:600px) {
+      margin: 1px;
+    }
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border-width: 0;
+    box-shadow: 2px 5px 12px rgba($color: #000000, $alpha: 0.3);
+    cursor: pointer;
+
+  }
+}
+
+
+
+::ng-deep .mat-form-field-wrapper{
+  .white-log *{
+    color:black !important;
+  }
+  *{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+}
+
+:root::-webkit-scrollbar{
+  width: 0.5px;
+  background-color: black;
+}
+.add-category-input{
+  background-color: #2c2c2c;
+  color:white;
+  font-size: 18px;
+  padding:15px;
+  overflow-x: hidden;
+}
+.scroll-select{
+  overflow-x: hidden;
+}
+::ng-deep .mat-select-panel::-webkit-scrollbar{
+  width: 7px;
+  background-color: #2c2c2c;
+  height: 7px;
+}
+app-action{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+mat-form-field{
+  margin: 10px 100px;
+}
+.delete_log_fab{
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+::ng-deep textarea.mat-input-element::-webkit-scrollbar{
+  width: 10px;
+  background-color: black;
+}
+::ng-deep textarea.mat-input-element::-webkit-scrollbar-thumb{
+  background-color: white;
+}

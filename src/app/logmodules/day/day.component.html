@@ -1,0 +1,56 @@
+
+<div>
+  <cdk-virtual-scroll-viewport>
+    <div class="logs-container"
+  cdkDropList
+     [cdkDropListData]="logs$ |async"
+     (cdkDropListDropped)="drop($event)"
+  >
+
+    <div *ngFor="let log of logs$ |async ;let i = index" [@inOutAnimation]
+
+     >
+        <mat-card [className]="log.color" (click)="openDialog(log.id)" cdkDragLockAxis="x" cdkDrag>
+            <mat-card-header>
+                <mat-card-title >
+                    <h1 class="log-title">{{log.title}}</h1>
+                </mat-card-title>
+                <mat-divider></mat-divider>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{log.note}}</p>
+                <mat-card-footer>
+                  <div class="icons-div">
+                    <mat-icon *ngIf="log.is_timed" svgIcon="time18"  aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                    <mat-icon *ngIf="!log.is_action" svgIcon="note18"  aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                    <mat-icon *ngIf="log.is_action" svgIcon="action18"  aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                  </div>
+                  <div class="time-div">
+                    <p>{{(log.is_timed ? 'START:' : '') +logToDate(log, true)}}</p>
+                    <p *ngIf="log.is_timed">END: {{logToDate(log, true, true)}}</p>
+                  </div>
+                </mat-card-footer>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+
+</div>
+</cdk-virtual-scroll-viewport>
+</div>
+<div class="small-date">
+
+  <mat-form-field>
+    <input matInput type="number" (wheel)="mouseWheelEvent($event,'year')"
+     maxlength="4" (keyup)="changeYear($event)"  placeholder="Year" [(ngModel)]="logDate.value.year">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" (wheel)="mouseWheelEvent($event,'month')"
+     maxlength="2"
+    [placeholder]="monthNames[logDate.value.month - 1]" (keyup)="changeMonth($event)" [(ngModel)]="logDate.value.month">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" maxlength="2" (wheel)="mouseWheelEvent($event,'day')"
+    [placeholder]="getDayName()" (keyup)="changeMonth($event)" [(ngModel)]="logDate.value.day">
+  </mat-form-field>
+</div>

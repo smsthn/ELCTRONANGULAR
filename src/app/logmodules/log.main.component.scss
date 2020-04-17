@@ -1,0 +1,128 @@
+* {
+    color: white;
+    text-align: center;
+}
+
+log-root{
+  max-height: 100vh;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+  display: block;
+
+
+}
+@media only screen and (max-height:750px){
+  .fixed-top{
+    transform: translateY(-200px);
+    height: 0;
+    opacity: 0;
+  }
+}
+.fixed-top {
+  transition: transform 400ms ease, opacity 400ms ease;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    padding-top: 20px;
+    border-bottom: solid 2px black;
+
+      .frst-line-top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      max-height: 60px;
+      height: 60px;
+      mat-slider {
+          margin: 0 30px;
+          width: 100%;
+      }
+      ::ng-deep .mat-slider-thumb,
+      ::ng-deep .mat-slider-track-fill {
+          background-color: #e91e63;
+      }
+      ::ng-deep .mat-slider-thumb-label {
+          background-color: white;
+      }
+    }
+
+h2 {
+    display: inline;
+    font-size: 3vmin;
+}
+
+.nd-line-top {
+  position: relative;
+  justify-content: space-evenly;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  flex-direction: row;
+  div{
+    position: absolute;
+    button{
+      margin: 0 10px 10px 10px;
+      position: relative;
+      top: -18px;
+      width: 4vmin;
+      height: 4vmin;
+      border-bottom: solid black 1px;
+    }
+    h1 {
+      color: rgb(189, 189, 189);
+      background-color: #2c2c2c;
+      border-radius: 0 0 10px 10px;
+      border-bottom: solid 2px black;
+      //left: 47vw;
+      position: relative;
+      top: -15px;
+      display: inline-block;
+      font-size: 60px;
+      margin: auto;
+      width: auto;
+      height: auto;
+    }
+  }
+  h1::content {
+      width: fit-content;
+      padding: 2px 7px;
+
+  }
+  p, button {
+      max-width: 25vw;
+      max-height: 7vmin;
+      margin:0 10vmin;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      align-self: flex-end;
+  }
+}
+}
+
+
+.log-body{
+
+}
+router-outlet{
+  overflow-x: hidden;
+
+}
+
+.add-fab-div{
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  button{
+
+    .add-fab{
+      transform: scale(1.6,1.6);
+      color:white !important;
+    }
+
+  }
+  //.material-icons.md-light.add-fab { color: rgba(255, 255, 255, 1) !important; }
+}
+

@@ -1,0 +1,80 @@
+.action-root{
+  margin: 0;
+  padding:0;
+  *::-webkit-scrollbar{
+    width: 1px;
+    height: 1px;
+    background-color: #0c0c0c;
+  }
+  .action-container{
+    max-width: 95%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);;
+  grid-template-areas:
+  "log_type_icon action action action"
+  "subject subject subject ."
+  ". adverb adverb adverb "
+  "details details details ."
+  ;
+  .log_type_icon{
+    grid-area: log_type_icon;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .action{
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    text-align: start;
+    grid-area: action;
+    font-size: 36px;
+    margin-bottom: 5px;
+    padding: 0 20px;
+  }
+  .subject{
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    color: #cccccc;
+    text-align: end;
+    grid-area: subject;
+    font-size: 30px;
+    margin-bottom: 5px;
+    padding: 0 20px;
+  }
+  .adverb{
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    color: #bbbbbb;
+    text-align: start;
+    grid-area: adverb;
+    font-size: 25px;
+    margin-bottom: 5px;
+    padding: 0 20px;
+  }
+  .details{
+    background-color: rgba($color: #000000, $alpha: 0.27);
+    color: #aaaaaa;
+    text-align: end;
+    grid-area: details;
+    font-size: 20px;
+    margin-bottom: 5px;
+    padding: 0 20px;
+  }
+}
+.find-things-list{
+  overflow: auto;
+  ul{
+
+    list-style: none;
+    li{
+      button{
+        text-align: center;
+        width: 100%;
+        border: solid 1px rgba($color: #000000, $alpha: 0.3);
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+      }
+    }
+  }
+}
+.find-things-list::-webkit-scrollbar{
+  width: 0.5px;
+  background-color: black;
+}
+}

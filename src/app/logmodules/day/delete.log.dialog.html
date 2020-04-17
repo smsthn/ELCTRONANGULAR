@@ -1,0 +1,35 @@
+<div class="delete-diag-root-div">
+  <h1>{{log.title? log.title:log.note}}</h1>
+  <p>
+    do you wish to delete the log?
+  </p>
+  <div class="buttons-div">
+    <button mat-flat-button (click)="deleteLog()" class="delete-btn">delete</button>
+    <button mat-button (click)="closeDialog()"  class="cancel-btn">cancel</button>
+  </div>
+</div>
+<style>
+
+  h1, p {
+    width: 100%;
+    text-align: center;
+  }
+  .buttons-div{
+    width: 100%;
+    display: flex;
+  }
+  .delete-btn{
+    background-color: red;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+  }
+  .cancel-btn{
+    width: 100%;
+    font-size: 20px;
+  }
+  .delete-btn,.cancel-btn{
+    border: none;
+    margin: 0 5px;
+  }
+</style>

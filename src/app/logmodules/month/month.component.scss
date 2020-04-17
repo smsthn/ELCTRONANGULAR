@@ -1,0 +1,244 @@
+*{
+  color:white;
+  @media only screen and (min-width:1000px){
+    color: rgb(241, 241, 241);
+  }
+}
+
+
+.log-month-root{
+  overflow: hidden;
+  height: 100vh;
+}
+
+.month-name{
+  justify-self: center;
+  align-self: center;
+  grid-column: 1 / 5;
+  padding: 0;
+  margin: 0 0 0 0;
+}
+
+mat-grid-list {
+  transition: margin 400ms ease;
+  margin-top: 160px !important;
+  //position: absolute;
+  //margin: 0;
+  padding: 0 !important;
+  //top: 0 !important;
+  max-height: calc(100vh - 160px);
+  height: calc(100vh - 160px);
+  overflow: hidden;
+  width: 100vw;
+  mat-grid-tile {
+    padding: 0;
+    margin: 0;
+
+
+  .day-card{
+    background-color: #1f1f1f;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+
+    box-sizing: border-box;
+  .day{
+    position: relative;
+    list-style: none;
+    display: table;
+    padding: 0;
+    margin: 0 0 0 0;
+    width: 100%;
+    .log{
+      width: 100%;
+      padding: 0;
+      button{
+        white-space: nowrap;
+        width: 14vw;
+        height: 1.8em;
+        margin: 0.5vh 0 0.5vh 0;
+        line-height: 5px;
+        font-size: 1.5vmin;
+        text-shadow: 1px 1px 5px white;
+        letter-spacing: 2px;
+        text-align: start;
+        font-family: 'Comic Neue', cursive;
+        @media (min-width: 1500px){
+          font-size: 14px;
+        }
+        @media (max-width: 500px){
+          font-size: 5px;
+        }
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 600;
+      }
+
+    }
+
+  }
+}
+}
+  .day-card::-webkit-scrollbar{
+    visibility: collapse;
+    width: 5%;
+    background-color: gray;
+  }
+
+  .day-num{
+    max-height: 1vh;
+    color: white;
+    font-weight: 100;
+    z-index: 1;
+    right: 50%;
+    font-size: 1.5vmin;
+    margin: 3px 0;
+    text-align: center;
+    padding: 3px 3px 0 3px;
+  }
+}
+
+
+.action-log{
+ border-radius: 0;
+}
+.note-log{
+border-radius: 10%;
+}
+@media only screen and (max-width:1000px), only screen and (max-height:1000px){
+  .action-log,.note-log{
+    mat-icon{
+      max-width: 10px;
+      max-height: 10px;
+    }
+  }
+}
+.day-names{
+  transition: top 400ms ease;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: absolute;
+  top: 118px;
+  width: 100vw;
+  justify-content: space-evenly;
+  z-index: 1;
+  h3{
+    text-align: left;
+    width: 100%;
+    background-color: black;
+    padding-left: 25px;
+  }
+}
+@media only screen and (max-height:750px){
+  .day-names{
+    top:40px;
+    h3{
+      font-size: 12px;
+    }
+  }
+  mat-grid-list{
+    margin-top: 66px !important;
+     max-height: calc(100vh - 70px);
+    height: calc(100vh - 70px);
+  }
+  .small-date{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: #700e35;
+    visibility: visible !important;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    height: 50px;
+    width: 40%;
+    mat-form-field{
+      color: white !important;
+      margin: 3px;
+    }
+  }
+}
+.small-date{
+  visibility: collapse;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+$red :hsl(349, 50%, 56%);
+$yellow :hsl(55, 30%, 56%);
+$light-blue :hsl(199, 20%, 57%);
+$blue :hsl(223, 40%, 50%);
+$purple :hsl(274, 60%, 60%);
+$pink :hsl(332, 50%, 50%);
+$white :#fafafa;
+$blue-gray :#5F7D8A;
+$orange :hsl(4, 58%, 57%);
+$green :hsl(172, 100%, 28%);
+$dark-green :#008600;
+
+
+$bg-color:#121212;
+
+$fixed-top-color:#2c2c2c;
+
+
+$font-color:rgb(150, 150, 150);
+
+
+.red-log{
+  background-color: $red !important;
+}
+.yellow-log{
+  background-color: $yellow !important;
+}
+.light-blue-log{
+  background-color: $light-blue !important;
+}
+.blue-log{
+  background-color: $blue !important;
+}
+.purple-log{
+  background-color: $purple !important;
+}
+.pink-log{
+  background-color: $pink !important;
+}
+.white-log{
+  background-color: $white !important;
+  color:black !important;
+  mat-card-subtitle, mat-card-title, input, mat-label, textarea, button, p, h1{
+    color:black !important;
+  }
+
+}
+.blue-gray-log{
+  background-color: $blue-gray !important;
+}
+.orange-log{
+  background-color: $orange !important;
+}
+.green-log{
+  background-color: $green !important;
+
+}
+.dark-green-log{
+  background-color: $dark-green !important;
+}
+
+
+

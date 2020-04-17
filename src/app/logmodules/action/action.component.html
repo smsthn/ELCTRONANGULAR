@@ -1,0 +1,68 @@
+<div class="action-root" *ngIf="finishedInit && laa" >
+  <div class="action-container">
+    <div class="log_type_icon" *ngIf="action&&!creatingAction">
+      <ng-container *ngIf="action&&action.type === 'Sum'; else elseTemplate">
+        <mat-icon svgIcon="sum18"></mat-icon>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-icon svgIcon="count18"></mat-icon>
+      </ng-template>
+
+    </div>
+  <input #actioninput class="action" autocomplete="off" matInput placeholder="Action" (focus)="actionFocus = true"
+    (input)="actionName.next(actioninput.value)"
+    [value]="action? action.name :actionName.value" matTooltip="action.description"
+    >
+
+  <input #subjectInput class="subject" autocomplete="off"
+    *ngIf="actionFound&&!actionFocus&&!creatingAction"
+  (input)="actionSubjectName.next(subjectInput.value)" autocomplete="off"
+  (focus)="actionSubjectFocus = true"
+    matInput placeholder="Subject"
+    [value]="actionSubject?actionSubject.name:actionSubjectName.value"
+      matTooltip="actionSubject.description" >
+    <mat-select *ngIf="creatingAction" placeholder="actionType" [(ngModel)]="actionType">
+      <mat-option *ngFor="let at of actionTypes" [value]="at">
+        {{at}}
+      </mat-option>
+    </mat-select>
+  <input class="adverb" autocomplete="off"
+    *ngIf="(actionFound&&actionSubjectFound&&!actionFocus&&
+    !actionSubjectFocus&&!creatingActionSubject)||creatingAction" [disabled]="!creatingAction"
+    matInput placeholder="Adverb" [(ngModel)]="action.adverb" >
+
+  <input class="details" autocomplete="off"
+  *ngIf="(actionFound&&actionSubjectFound&&action.adverb&&!actionFocus&&
+  !actionSubjectFocus&&!creatingActionSubject&&!creatingAction)" (input)="changeLogTitle()"
+    matInput placeholder="Details" [(ngModel)]="laa.details" matTooltip="action.description" >
+
+</div>
+<div class="find-things-list" *ngIf="!actionFound||actionFocus">
+  <ul>
+    <li *ngIf="actionName.value">
+      <button mat-button style="background-color: transparent;"
+      (click)="addAction();actionLostFocus();"
+      >{{!creatingAction&&action&&(action.name === actionName.value)?action.name :'++ADD++'}}</button>
+    </li>
+    <li *ngFor="let action of actionmatch">
+      <button mat-button style="background-color: transparent;"
+      (click)="actionClicked(action);actionLostFocus();"
+      >{{action.name}}</button>
+    </li>
+  </ul>
+</div>
+<div class="find-things-list" *ngIf="!actionSubjectFound||actionSubjectFocus">
+  <ul>
+    <li *ngIf="actionSubjectName.value">
+      <button mat-button style="background-color: transparent;"
+      (click)="addActionSubject();actionSubjectLostFocus();"
+      >{{!creatingActionSubject&&actionSubject&&(actionSubject.name === actionSubjectName.value)?actionSubject.name :'++ADD++'}}</button>
+    </li>
+    <li *ngFor="let actionsubject of actionSubjectmatch">
+      <button mat-button style="background-color: transparent;"
+      (click)="actionSubjectClicked(actionsubject);actionSubjectLostFocus();"
+      >{{actionsubject.name}}</button>
+    </li>
+  </ul>
+</div>
+</div>

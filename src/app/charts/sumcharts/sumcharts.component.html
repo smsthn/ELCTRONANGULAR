@@ -1,0 +1,38 @@
+
+<div>
+  <cdk-virtual-scroll-viewport style="height: 80vh;">
+  <ng-container  *ngIf="(viewdatas && viewdatas.length > 0 && viewdatas[0].data.length > 0) then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+  <div class="canvas-root"  #myCharts>
+    <h2 *ngIf="additionalLength > 1">Top {{additionalLength}} Actions</h2>
+  <div class="additional-div-div" [style.height]="additionalLength===0 ?0 : 'auto'">
+    <div class="additional-div"
+    [style.visibility]="additionalLength===0 ?'hidden' : 'visible'"
+
+    >
+    <canvas #AdditionalCanvas >
+
+    </canvas>
+  </div>
+  </div>
+  <div class="canvas-div"    *ngFor="let data of viewdatas.slice(0,20);let i=index" >
+    <h2>{{data.key}}</h2>
+    <canvas id="{{data.key+i}}"></canvas>
+  </div>
+</div>
+</ng-template>
+<ng-template #elseTemplate>
+<div ><h1 style="text-align: center;">There are no such Actions here</h1></div>
+</ng-template>
+
+
+</cdk-virtual-scroll-viewport>
+</div>
+
+
+<style>
+  *{
+    color: white;
+  }
+
+</style>
